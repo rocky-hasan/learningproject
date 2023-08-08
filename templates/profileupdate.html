@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="row">
+    <h3 class="text-center">Update Details Here...</h3>
+    <hr>
+    <div class="col-md-3">
+
+        <div><a href="{% url 'profile' %}" class="btn btn-primary">Go Back</a></div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <form action="/profileupdate/{{data.candidateId}}/" method="post">
+            {% if messages %}
+              {% for message in messages %}
+                <p {% if message.tags %} data-bs-dismiss="alert" class="alert alert-{{message.tags}}"  {% endif %} >{{message}}
+                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </p>
+              {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="fname"><b>First Name</b></label>
+                <input type="text" class="form-control" value="{{data.first_name}}" name="fname" id="fname" required>
+            </div>
+            <div class="form-group">
+                <label for="lname"><b>Last Name</b></label>
+                <input type="text" class="form-control" name="lname" id="lname" required>
+            </div>
+            <div class="form-group">
+                <label for="fathername"><b>Father Name</b></label>
+                <input type="text" class="form-control" name="fathername" id="fathername" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneno"><b>Mobile Number</b></label>
+                <input type="text" class="form-control" name="phoneno" id="phoneno" required>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="email" id="email" placeholder="@gmail.com" value="{{ data.email }}">
+
+            </div>
+            <div class="form-group">
+                <label for="address"><b>Address</b></label>
+                <input type="text" class="form-control" name="address" id="address" required>
+            </div>
+            <div class="form-group">
+                <label for="street"><b>Street</b></label>
+                <input type="text" class="form-control" name="street" id="street" required>
+            </div>
+            <div class="form-group">
+                <label for="city"><b>City</b></label>
+                <input type="text" class="form-control" name="city" id="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="designation"><b>Designation</b></label>
+                <input type="text" class="form-control" name="designation" id="designation" required>
+            </div>
+            <div class="form-group">
+                <label for="qualification"><b>Qualification</b></label>
+                <input type="text" class="form-control" name="qualification" id="qualification" required>
+            </div>
+            <br>
+            <label><b>Computer Knowledge</b></label><br>
+            <div class="form-check-inline">
+                <label for="basic">Basic</label>
+                <input type="radio" class="form-check-inline" id="basic" name="cknowledge" value="Basic" required>
+            </div>
+            <div class="form-check-inline">
+                <label for="intermediate">Intermediate</label>
+                <input type="radio" class="form-check-inline" id="intermediate" name="cknowledge" value="Intermediate" required>
+            </div>
+            <div class="form-check-inline">
+                <label for="advance">Advance</label>
+                <input type="radio" class="form-check-inline" id="advance" name="cknowledge" value="Advance" required>
+            </div>
+            <hr>
+
+            <div class="form-control">
+                <label for="scourse"><b>Select Course</b></label>
+                <select name="scourse" id="scourse" class="form-control" required>
+                    <option value="select">Choose Course</option>
+                    {% for c in courses %}
+                        <option value="{{ c.courseName }}">{{ c.courseName }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="chcourse"><b>Confirm Course</b></label>
+                <select name="chcourse" id="chcourse" class="form-control" required>
+                    <option value="select">Select Course</option>
+                    {% for c in courses %}
+                        <option value="{{ c.courseName }}">{{ c.courseName }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <hr>
+            <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-success get-started-btn">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

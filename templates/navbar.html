@@ -1,0 +1,59 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">Learning Hunter</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto ">
+        <li class="nav-item">
+          <a class="nav-link {% block home %} {% endblock home %}" href="{% url 'index' %}">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block course %} {% endblock course %}" href="{% url 'courses' %}">Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block attendance %} {% endblock attendance %}" href="{% url 'attendance' %}">Attendance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block enroll %} {% endblock enroll %}" href="{% url 'enroll' %}">Enroll</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block about %} {% endblock about %}" href="{% url 'about' %}">about</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block contact %} {% endblock contact %}" href="{% url 'contact' %}">Contact</a>
+        </li>
+                               {% if request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link {% block signin %} {% endblock signin %}" href="{% url 'profile' %}">Welcome {{request.user}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% block logout %} {% endblock logout %}" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+        <li>
+          <a class="nav-link {% block reset_pass %} {% endblock reset_pass %}" href="{% url 'reset_pass' %}">Reset Password</a>
+        </li>
+                  {% else %}
+        <li>
+          <a class="nav-link {% block login %} {% endblock login %}" href="{% url 'signin' %}">login</a>
+        </li>
+        <li>
+          <a class="nav-link {% block signup %} {% endblock signup %}" href="{% url 'signup' %}">Signup or Registration</a>
+        </li>
+                    {% endif %}
+
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

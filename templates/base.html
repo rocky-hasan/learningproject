@@ -1,0 +1,40 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Lobster&display=swap" rel="stylesheet"/>
+
+      {% block style %} {% endblock style %}
+
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+        {% block pbody %}          {% endblock pbody %}
+<div class="container ">
+    <div class="row justify-content-center mt-3">
+
+         {% block msg %}   {% endblock msg %}
+
+        {% block body %}          {% endblock body %}
+
+         {% block script %}          {% endblock script %}
+
+    </div>
+</div>
+
+ <!-- Javascript CSS -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/proper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+  </body>
+</html>

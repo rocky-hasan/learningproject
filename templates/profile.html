@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% block title %} profile {% endblock title %}
+{% block profile %} active {% endblock profile %}
+{% block pbody %}
+<div class="container mt-2">
+    <h1 class="text-center" >Welcome {{request.user}}</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div><a href="/" class="btn btn-primary">Go back</a></div>
+        </div>
+        <div class="col-md-7">
+            <div class="card p-3">
+
+              <div class="card-title">
+                <h3>Candidate Details</h3>
+
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <a href="/profileupdate/{{details.candidateId}}/" class="btn btn-light d-grid gap-2 d-md-flex justify-content-md-end">Update Details</a>
+                  </div>
+              </div>
+            <div class="card-body">
+
+                <h5>Candidate ID: <b>{{details.candidateId}}</b></h5><hr/>
+                <h5>Name: <b>{{details.first_name}} {{details.last_name}}</b></h5><hr/>
+                <h5>Fathers Name: <b>{{details.fathers_name}}</b></h5><hr/>
+                <h5>Mobile No: <b>{{details.Phone_number}}</b></h5><hr/>
+                <h5>Email: <b>{{details.email}}</b></h5><hr/>
+                <h5>Address: <b>{{details.address}}</b></h5><hr/>
+                <h5>Street: <b>{{details.street}}</b></h5><hr/>
+                <h5>City: <b>{{details.city}}</b></h5><hr/>
+                <h5>Designation: <b>{{details.designation}}</b></h5><hr/>
+                <h5>Address: <b>{{details.address}}</b></h5><hr/>
+                <h5>Qualification: <b>{{details.qualification}}</b></h5><hr/>
+                <h5>Computer Knowledge: <b>{{details.computer_knowledge}}</b></h5><hr/>
+                <h5>Course: <b>{{details.course}}</b></h5><hr/>
+                <h5>Enrollment Date : <b>{{details.timestamp}}</b></h5><hr/>
+                <hr>
+                <h3>Trainer Assigned: {{details.trainer}} </h3>
+                <hr>
+                <h2>Payment Status</h2>
+                <hr>
+                <h4>Amount Paid: {{status.amount}}</h4>
+                <h4>Amount Balance: {{status.balance}}</h4>
+                <h4>Payment Status: {{status.paymentstatus}}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container mt-2">
+    <hr>
+<h1 class="text-center">Attendance Status</h1>
+    <hr>
+    <table class="table">
+  <thead class="thread-dark">
+    <tr>
+      <th scope="col">Name</th>
+        <th scope="col">Date</th>
+      <th scope="col">Login</th>
+      <th scope="col">Logout</th>
+      <th scope="col">Approved Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for atd in attendanceStats %}
+    <tr class="table-success">
+      <th scope="row">1</th>
+      <td>{{atd.username}}</td>
+      <td>{{atd.date}}</td>
+      <td>{{atd.logintime}}</td>
+      <td>{{atd.logouttime}}</td>
+         {% if atd.approved  %}
+              <td><i class="fa-solid fa-thumbs-up" >Approved</i></td>
+         {% else %}
+              <td><i class="fa-solid fa-circle-xmark" > Not Approved</i></td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock pbody %}

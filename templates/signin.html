@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Log in{% endblock title %}
+
+{% block signup %}
+    active
+{% endblock signup %}
+
+{% block body %}
+  <div class="col-sm-6">
+   <h3>User login</h3>
+   <hr>
+      <form action="" method="post" class=" rounded my-3 p-2 form-control">
+
+          {% if messages %}
+            {% for message in messages %}
+          <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+                  <strong>{{message}}</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            {% endfor %}
+          {% endif %}
+
+
+          {% csrf_token %}
+          {% for form in form %}
+         <p >{{form.label_tag}} {{form}}</p>
+            <small class="text-danger">{{form.errors}}</small>
+            {% endfor %}
+
+          <input type="submit" value="login" class="btn btn-primary mt-2">
+              <div class="text-center text-primary fw-bold">
+                <small>
+                    New User? <a href="{% url 'signup' %}" class="text-success" >Signup</a>
+                </small>
+             </div>
+      </form>
+
+  </div>
+{% endblock body %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} contact {% endblock title %}
+
+{% block body %}
+  <div class="col-sm-4 ">
+   <h3>Contact Us</h3>
+   <hr>
+
+  <form action="{% url 'contact' %}" method="post" novalidate class="shadow p-3 rounded ">   {% csrf_token %}
+
+          {% if messages %}
+            {% for message in messages %}
+          <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+                  <strong>{{message}}</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            {% endfor %}
+          {% endif %}
+
+
+{% for fm in form %}
+        <div class="group mb-6 mt-1">
+            <label >
+                <i class="{{ fm.field.widget.attrs.icon }}"></i>
+                {{ fm.label_tag }}
+            </label>
+            {{ fm }} <small class="text-danger">{{ fm.errors | striptags }}</small>
+        </div>
+{% endfor %}
+
+ <input type="submit" value="Send" class="btn btn-primary mt-1">
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p class="alert alert-danger my-3" >{{error}}</p>
+    {% endfor %}
+    {% endif %}
+
+
+    </form>
+  </div>
+{% endblock body %}
